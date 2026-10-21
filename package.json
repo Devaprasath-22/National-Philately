@@ -1,0 +1,16 @@
+{
+  "name": "national-philately-community",
+  "version": "1.0.0",
+  "description": "National Philately Web Community & Account Manager - MERN Stack",
+  "private": true,
+  "scripts": {
+    "install:all": "npm install && cd client && npm install",
+    "server": "cd server && node index.js",
+    "server:dev": "cd server && npx nodemon index.js",
+    "client": "cd client && npm run dev",
+    "dev": "concurrently \"npm run server:dev\" \"npm run client\""
+  },
+  "dependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
