@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import API from '../services/api';
+import API, { getAssetUrl } from '../services/api';
 import { HiOutlineSearch, HiOutlineLocationMarker, HiOutlineCollection } from 'react-icons/hi';
 
 const Collectors = () => {
@@ -99,7 +99,7 @@ const Collectors = () => {
                     fontWeight: 700, fontSize: '1.2rem', color: 'white', overflow: 'hidden'
                   }}>
                     {collector.avatar ? (
-                      <img src={collector.avatar.startsWith('/uploads') ? `http://localhost:5000${collector.avatar}` : collector.avatar}
+                      <img src={getAssetUrl(collector.avatar)}
                         alt={collector.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                     ) : collector.name?.charAt(0).toUpperCase()}
                   </div>

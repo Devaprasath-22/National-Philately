@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import API from '../services/api';
+import API, { getAssetUrl } from '../services/api';
 import toast from 'react-hot-toast';
 import { HiOutlineX, HiOutlineSearch, HiOutlineBookmark } from 'react-icons/hi';
 
@@ -82,7 +82,7 @@ const Wishlist = () => {
               <Link to={`/stamps/${stamp._id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                 {stamp.image ? (
                   <div className="stamp-card-image">
-                    <img src={stamp.image.startsWith('/uploads') ? `http://localhost:5000${stamp.image}` : stamp.image} alt={stamp.title} />
+                    <img src={getAssetUrl(stamp.image)} alt={stamp.title} />
                   </div>
                 ) : (
                   <div className="stamp-card-placeholder">📮</div>

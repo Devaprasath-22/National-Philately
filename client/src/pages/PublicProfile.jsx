@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import API from '../services/api';
+import API, { getAssetUrl } from '../services/api';
 import toast from 'react-hot-toast';
 import { HiOutlineLocationMarker, HiOutlineCollection } from 'react-icons/hi';
 
@@ -42,7 +42,7 @@ const PublicProfile = () => {
       <div className="profile-header">
         <div className="profile-avatar-large" style={{ fontSize: '2rem' }}>
           {profile.avatar ? (
-            <img src={profile.avatar.startsWith('/uploads') ? `http://localhost:5000${profile.avatar}` : profile.avatar}
+            <img src={getAssetUrl(profile.avatar)}
               alt={profile.name} style={{ width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover' }} />
           ) : profile.name?.charAt(0).toUpperCase()}
         </div>
@@ -97,7 +97,7 @@ const PublicProfile = () => {
               <div className="card stamp-card">
                 {stamp.image ? (
                   <div className="stamp-card-image">
-                    <img src={stamp.image.startsWith('/uploads') ? `http://localhost:5000${stamp.image}` : stamp.image} alt={stamp.title} />
+                    <img src={getAssetUrl(stamp.image)} alt={stamp.title} />
                   </div>
                 ) : (
                   <div className="stamp-card-placeholder">📮</div>

@@ -78,6 +78,11 @@ The repository includes a [Render Blueprint](render.yaml) for the backend API.
 
 `JWT_SECRET` is generated automatically by the Render Blueprint.
 
+To deploy the frontend as a Render Static Site, set:
+
+- `VITE_API_URL`: The backend URL, such as `https://your-backend.onrender.com`
+- `CLIENT_URL`: The same frontend URL after deployment
+
 ---
 
 ## API Endpoints

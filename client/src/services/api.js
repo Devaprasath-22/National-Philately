@@ -1,13 +1,20 @@
 import axios from 'axios';
 
+const API_BASE_URL = (import.meta.env.VITE_API_URL || '').replace(/\/$/, '');
+
 const API = axios.create({
-  baseURL: '/api',
+  baseURL: `${API_BASE_URL}/api`,
   headers: {
     'Content-Type': 'application/json'
   }
 });
 
-// Attach JWT token to every request
+export const getAssetUrl = (path) => {
+  if (!path) return '';
+  if (!path.startsWith('/uploads')) return path;
+  return `${API_BASE_URL}${path}`;
+};
+
 API.interceptors.request.use((config) => {
   const user = JSON.parse(localStorage.getItem('philately_user'));
   if (user?.token) {
@@ -16,7 +23,6 @@ API.interceptors.request.use((config) => {
   return config;
 });
 
-// Handle 401 responses (expired token)
 API.interceptors.response.use(
   (response) => response,
   (error) => {

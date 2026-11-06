@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import API from '../services/api';
+import API, { getAssetUrl } from '../services/api';
 import {
   HiOutlineCollection, HiOutlineSwitchHorizontal,
   HiOutlineBookmark, HiOutlineGlobe, HiOutlineCurrencyRupee,
@@ -168,7 +168,7 @@ const CollectionDashboard = () => {
                   <div className="card stamp-card" style={{ margin: 0 }}>
                     {stamp.image ? (
                       <div className="stamp-card-image" style={{ height: 160 }}>
-                        <img src={stamp.image.startsWith('/uploads') ? `http://localhost:5000${stamp.image}` : stamp.image} alt={stamp.title} />
+                        <img src={getAssetUrl(stamp.image)} alt={stamp.title} />
                       </div>
                     ) : (
                       <div className="stamp-card-placeholder" style={{ height: 160 }}>📮</div>
