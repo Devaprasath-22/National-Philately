@@ -63,6 +63,23 @@ npm run dev
 
 ---
 
+## Deploying the Backend to Render
+
+The repository includes a [Render Blueprint](render.yaml) for the backend API.
+
+1. Push the repository to GitHub, GitLab, or Bitbucket.
+2. In Render, choose **New → Blueprint** and select the repository.
+3. Set these environment variables in the Render service:
+   - `MONGO_URI`: MongoDB Atlas connection string
+   - `CLIENT_URL`: the deployed frontend URL, with no trailing slash
+4. In MongoDB Atlas, allow Render connections from `0.0.0.0/0`.
+5. Deploy the blueprint and verify the API health check at:
+   `https://your-service.onrender.com/api/health`
+
+`JWT_SECRET` is generated automatically by the Render Blueprint.
+
+---
+
 ## API Endpoints
 
 | Method | Endpoint | Auth | Description |
