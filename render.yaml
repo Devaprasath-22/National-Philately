@@ -15,7 +15,7 @@ services:
       - key: JWT_SECRET
         generateValue: true
       - key: CLIENT_URL
-        sync: false
+        value: https://national-philately-client.onrender.com
   - type: web
     name: national-philately-client
     runtime: static
@@ -28,4 +28,4 @@ services:
         destination: /index.html
     envVars:
       - key: VITE_API_URL
-        sync: false
+        value: https://national-philately-api.onrender.com

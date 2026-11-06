@@ -12,7 +12,13 @@ const app = express();
 // CORS — allow any localhost port for Vite dev
 app.use(cors({
   origin: (origin, callback) => {
-    if (!origin || /^http:\/\/localhost:\d+$/.test(origin) || origin === process.env.CLIENT_URL) {
+    const allowedOrigins = (process.env.CLIENT_URL || '')
+      .split(',')
+      .map((url) => url.trim().replace(/\/$/, ''))
+      .filter(Boolean);
+    const normalizedOrigin = origin?.replace(/\/$/, '');
+    if (!origin || /^http:\/\/localhost:\d+$/.test(origin) ||
+      allowedOrigins.includes(normalizedOrigin)) {
       callback(null, true);
     } else {
       callback(new Error('Not allowed by CORS'));
